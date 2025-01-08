@@ -51,7 +51,7 @@ public class User {
      */
     public boolean follows(String name) {
         for (int i = 0; i < fCount; i++) {
-            if (follows[i].equals(name)) {
+            if (follows[i].toLowerCase().equals(name.toLowerCase())) {
                 return true;
             }
         }
@@ -80,7 +80,7 @@ public class User {
     public boolean removeFollowee(String name) {
         int index = -1;
         for (int i = 0; i < fCount; i++) {
-            if (follows[i].equals(name)) {
+            if (follows[i].toLowerCase().equals(name.toLowerCase())) {
                 index = i;
                 break;
             }
