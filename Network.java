@@ -37,6 +37,9 @@ public class Network {
      * Notice that the method receives a String, and returns a User object.
      */
     public User getUser(String name) {
+        if (name == null) {
+            return null;
+        }
         for (int i = 0; i < this.userCount; i++) {
             if (users[i].getName().toLowerCase().equals(name.toLowerCase())) {
                 return users[i];
@@ -73,7 +76,7 @@ public class Network {
         if (getUser(name1) == null || getUser(name2) == null) {
             return false;
         }
-        if (getUser(name1).follows(name2)) {
+        if (getUser(name1).follows(name2) || name1.toLowerCase().equals(name2.toLowerCase())) {
             return false;
         }
         getUser(name1).addFollowee(name2);
@@ -95,6 +98,7 @@ public class Network {
             }
             if (getUser(name).countMutual(users[i]) > numMutual) {
                 mostRecommendedUserToFollow = users[i];
+                numMutual = getUser(name).countMutual(users[i]);
             }
         }
         return mostRecommendedUserToFollow.getName();
